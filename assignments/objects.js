@@ -27,7 +27,7 @@ let intern1 = {
 }
 let intern2 = {
   id: 2,
-  name: "Kennen",
+  name: "Kennan",
   email: "kdiben1@tinypic.com",
   gender: "M"
 }
@@ -64,13 +64,24 @@ console.log(intern3.email);
 // Gannie's name
 console.log(intern4.name);
 // Antonietta's Gender
-console.log(intern5.name);
+console.log(intern5.gender);
 // ==== Challenge 3: Object Methods ==== 
 // Give Kennan the ability to say "Hello, my name is Kennan!" Use the console.log provided as a hint.
 // console.log(kennan.speak());
 
+console.log(`Hello, my name is ${intern2.name}! ` );
+
+const letSpeak = function() { return `Hello, my name is ${this.name}!`;  }
+intern2.speak = letSpeak;
+
+console.log(intern2.speak());
+
 // Antonietta loves math, give her the ability to multiply two numbers together and return the product. Use the console.log provided as a hint.
 //console.log(antonietta.multiplyNums(3,4));
+const letMultiply = function(x,y) {return x*y;}
+intern5.multiplyNums = letMultiply;
+console.log(intern5.multiplyNums(3,4));
+
 
 // === Great work! === Head over to the the arrays.js file or take a look at the stretch challenge
 
@@ -81,16 +92,33 @@ console.log(intern5.name);
 // 3. Nest a grandchild object in the child object with properties for name and age.  The name will be Sam and the age will be 30
 // 4. Give each of the objects the ability to speak their names using the this keyword.
 
-const parent = {}
+let parent = {}
+parent.name = 'Susan';
+parent.age = 70;
+
+parent.child = {}
+parent.child.name = 'George';
+parent.child.age = 50;
+parent.child.grandchild = {};
+parent.child.grandchild.name = 'Sam';
+parent.child.grandchild.age = 30;
 
 // Log the parent object's name
+console.log(parent.name);
 
 // Log the child's age
-
+console.log(parent.child.age);
 // Log the name and age of the grandchild
-
+console.log(parent.child.grandchild.name,parent.child.grandchild.age);
 // Have the parent speak
 
+parent.speak = letSpeak;
+console.log(parent.speak());
+
 // Have the child speak
+parent.child.speak = letSpeak;
+console.log(parent.child.speak());
 
 // Have the grandchild speak
+parent.child.grandchild.speak = letSpeak;
+console.log(parent.child.grandchild.speak());
